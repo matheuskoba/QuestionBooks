@@ -7,7 +7,12 @@ export default {
         return json;
     },
     getQuestion: async (id) => {
-        const req = await fetch(`${BASE_API}/question_books/${id}.json`);
+        const req = await fetch(`${BASE_API}/question_books/${id}.json`,{
+            headers:{
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            }
+        });
         const json = await req.json();
         return json;
     }

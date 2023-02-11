@@ -1,0 +1,45 @@
+@use '../mixins'
+@use '../variables'
+
+#question-details
+    display: flex
+    justify-content: center
+    align-items: center
+    padding: 80px
+
+    .question-area
+        width: 70%
+
+    .question-title
+        color: variables.$question-color
+        font-size: variables.$font-size
+        font-weight: variables.$font-weight-normal
+        line-height: 15px
+        margin-bottom: 12px
+
+    .question-body
+        color: variables.$question-color
+        font-size: variables.$font-size
+        font-weight: variables.$font-weight-bold
+        line-height: 15px
+        margin-bottom: 15px
+    
+    .question-textarea
+        width: 100%
+        height: 123px
+        background-color: variables.$background-textarea
+        margin: 10px 0
+        padding: variables.$padding-default
+
+    .question-btn-send
+        @include mixins.btn
+        margin: 5px 0 20px 0
+
+    .question-btn
+        @include mixins.btn 
+        margin: 5px 0       
+        
+    .question-btn-area
+        display: flex
+        justify-content: space-between
+        margin-top: 20px
