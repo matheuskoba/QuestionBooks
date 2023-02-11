@@ -1,0 +1,36 @@
+@use 'variables'
+
+@mixin center
+    display: flex
+    justify-content: center
+    align-items: center
+
+@mixin btn
+    padding: variables.$padding-default
+    background-color: variables.$btn-bag-color
+    gap: 10px
+    border-radius: 5px
+    width: 178px
+    height: 35px
+    color: white
+    border: none
+    cursor: pointer
+
+@mixin btn-respondido
+    padding: variables.$padding-default
+    background-color: variables.$btn-bag-color-op
+    gap: 10px
+    border-radius: 5px
+    width: 178px
+    height: 35px
+    color: white
+    border: none
+    cursor: normal
+
+@mixin gap
+    display: grid
+    gap: 50px
+    grid-template-columns: auto auto auto
+    justify-content: center
+    background-color: transparent
+    padding: 50px

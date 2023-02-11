@@ -1,0 +1,41 @@
+@use '../variables'
+@use '../mixins'
+
+#question-container
+    border: solid 1px variables.$border-color
+    padding: 10px
+    color: #000000
+
+    .question-btn
+        @include mixins.btn
+
+    .question-btn-respondido
+        @include mixins.btn-respondido
+        
+    .question-title
+        font-weight: variables.$font-weight-bold
+        font-size: variables.$font-size
+        line-height: 15px
+        font-style: normal
+        margin-bottom: 10px
+        text-align: start
+
+    .question-amount
+        font-weight: variables.$font-weight-normal
+        font-size: variables.$font-size
+        line-height: 15px
+        font-style: normal
+        margin-bottom: 10px
+    
+    .question-status-area
+        padding: variables.$padding-default
+        margin-bottom: 10px
+
+    .question-status
+        font-weight: variables.$font-weight-normal
+        font-size: variables.$font-size
+        line-height: 15px
+        font-style: normal
+
+    
+        

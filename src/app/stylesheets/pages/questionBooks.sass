@@ -1,0 +1,22 @@
+@use '../mixins'
+@use '../variables'
+
+#question-books
+
+    .questions
+        @include mixins.gap
+
+    .filter-area
+        @include mixins.center
+        padding: 40px 0 0 0
+
+    .filter-check
+        margin-right: 10px
+        cursor: pointer
+
+    .filter-text
+        font-weight: variables.$font-weight-normal
+        font-size: variables.$font-size
+        line-height: 15px
+        
+    
