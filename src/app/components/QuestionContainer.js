@@ -1,14 +1,13 @@
 import React from 'react';
 import '../stylesheets/components/questionContainer.sass';
 
-import { useNavigate } from "@reach/router"
+import { useNavigate, Link } from "@reach/router"
 
 export default ({data,filter}) => {
     const navigate = useNavigate();
 
     return(
         <div style={(filter && data.answered) ? {display: 'none'} : {display: 'block'}} id="question-container">
-            <form onSubmit={() => navigate(`/cadernos-de-questoes/${data.id}`)}>
                 <h5 className='question-title'>{data.title}</h5>
                 <p className='question-amount'>{data.questionAmount > 1 ? `${data.questionAmount} questões` : `${data.questionAmount} questão`}</p>
                 <div className='question-status-area'>
@@ -18,9 +17,10 @@ export default ({data,filter}) => {
                     ? 
                     <button type='button' className='question-btn-respondido'>Responder</button> 
                     : 
-                    <button type='submit' className='question-btn'>Responder</button>
+                    <Link to={`/cadernos-de-questoes/${data.id}`} >
+                        <button type='button' className='question-btn'>Responder</button>
+                    </Link>
                 }
-            </form>
         </div>
     );
 }
