@@ -94,27 +94,30 @@ export const QuestionBookShow = (props) => {
       {loading ? (
         <div>Loading...</div>
       ) : submit ? (
-        <div>
-          <h1>Obrigado por enviar!</h1>
-          <div>O tempo de resposta total é de: {totalTime}</div>
-          <ul>
-            {userAnswers.map((answer, index) => (
-              <li key={index}>
-                <p>{answer.question}</p>
-                <p>Resposta:</p>
-                <p>{answer.answer}</p>
-              </li>
-            ))}
-          </ul>
+        <div id="thanks">
+          <div className='thanks-area'>
+            <h1 className='thanks-title'>Obrigado por enviar!</h1>
+            <div className='time'>O tempo de resposta total é de: {totalTime}</div>
+            <ul>
+              {userAnswers.map((answer, index) => (
+                <li key={index}>
+                  <p className='question-title'>{answer.question}</p>
+                  <p className='resposta-title'>Resposta:</p>
+                  <p className='question-response'>{answer.answer}</p>
+                  <hr/>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       ) : (
         <div id='answer-details'>
           <div className='answer-area'>
-            <div className="answer-title">Duração na questão: {time}s</div>
+            <div className="answer-time">Duração na questão: {time}s</div>
             <p className="answer-title">{currentAnswer.title}</p>
             <p className="answer-body">{currentAnswer.body}</p>
             <textarea className="answer-textarea" placeholder="Responda aqui" value={inputValue} onChange={handleAnswerChange} />
-            <p>{characterCount}</p>
+            <p className='answer-caracter-count'>{characterCount} caracteres digitados</p>
             <button className="answer-btn-send" onClick={handleSubmit}>Enviar resposta</button>
             <hr/>
             <div className="answer-btn-area">
