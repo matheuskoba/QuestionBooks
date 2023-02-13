@@ -1,2 +1,51 @@
 @use '../mixins'
 @use '../variables'
+
+#answer-details
+    display: flex
+    justify-content: center
+    align-items: center
+    padding: 80px
+
+    .answer-area
+        width: 50%
+
+    .answer-title
+        color: variables.$question-color
+        font-size: variables.$font-size
+        font-weight: variables.$font-weight-normal
+        line-height: 15px
+        margin-bottom: 12px
+
+    .answer-body
+        color: variables.$question-color
+        font-size: variables.$font-size
+        font-weight: variables.$font-weight-bold
+        line-height: 15px
+        margin-bottom: 15px
+    
+    .answer-textarea
+        width: 100%
+        height: 123px
+        background-color: variables.$background-textarea
+        margin: 10px 0
+        padding: variables.$padding-default
+
+    .answer-btn-send
+        @include mixins.btn
+        margin: 5px 0 20px 0
+
+    .answer-btn
+        @include mixins.btn 
+        margin: 5px 0  
+    
+    .answer-btn-disable
+        @include mixins.btn
+        opacity: 0.4
+        cursor: default
+        
+    .answer-btn-area
+        display: flex
+        justify-content: space-between
+        align-items: center
+        margin-top: 20px

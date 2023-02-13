@@ -37,7 +37,12 @@
 
     .answer-btn
         @include mixins.btn 
-        margin: 5px 0       
+        margin: 5px 0 
+    
+    .answer-btn-disable
+        @include mixins.btn
+        opacity: 0.1
+        cursor: default
         
     .answer-btn-area
         display: flex

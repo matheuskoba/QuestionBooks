@@ -1,5 +1,4 @@
 import React from "react";
-import '../stylesheets/components/answer.sass';
 
 export default () => {
     return(
