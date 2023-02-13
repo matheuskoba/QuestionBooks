@@ -9,6 +9,9 @@ export const QuestionBookShow = (props) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [loading, setLoading] = useState(true);
   const [submit, setSubmit] = useState(false);
+  const [characterCount, setCharacterCount] = useState(0);
+  const [time, setTime] = useState(0);
+  const [totalTime, setTotalTime] = useState(0);
 
   useEffect(() => {
     fetch(`http://localhost:3000/api/question_books/${props.id}.json`)
@@ -24,9 +27,20 @@ export const QuestionBookShow = (props) => {
       });
   }, []);
 
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setTime(time + 1);
+    }, 1000);
+
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, [time]);
+
   const [userAnswers, setUserAnswers] = useState([]);
   const [inputValue, setInputValue] = useState('');
   const handleAnswerChange = event => {
+    setCharacterCount(event.target.value.length);
     setInputValue(event.target.value);
     const existingAnswer = userAnswers.find(
       answer => answer.question === currentAnswer.title
@@ -51,6 +65,9 @@ export const QuestionBookShow = (props) => {
     setCurrentIndex(currentIndex + 1);
     setCurrentAnswer(answers[currentIndex + 1]);
     setInputValue('');
+    setCharacterCount(0);
+    setTotalTime(time + totalTime);
+    setTime(0);
   };
 
   const handleBack = () => {
@@ -61,9 +78,12 @@ export const QuestionBookShow = (props) => {
     setCurrentIndex(currentIndex - 1);
     setCurrentAnswer(answers[currentIndex - 1]);
     setInputValue('');
+    setCharacterCount(0);
+    setTime(0);
   };
 
   const handleSubmit = () => {
+    setTotalTime(time + totalTime);
     setSubmit(true);
   }
 
@@ -76,6 +96,7 @@ export const QuestionBookShow = (props) => {
       ) : submit ? (
         <div>
           <h1>Obrigado por enviar!</h1>
+          <div>O tempo de resposta total é de: {totalTime}</div>
           <ul>
             {userAnswers.map((answer, index) => (
               <li key={index}>
@@ -89,9 +110,11 @@ export const QuestionBookShow = (props) => {
       ) : (
         <div id='answer-details'>
           <div className='answer-area'>
+            <div className="answer-title">Duração na questão: {time}s</div>
             <p className="answer-title">{currentAnswer.title}</p>
             <p className="answer-body">{currentAnswer.body}</p>
             <textarea className="answer-textarea" placeholder="Responda aqui" value={inputValue} onChange={handleAnswerChange} />
+            <p>{characterCount}</p>
             <button className="answer-btn-send" onClick={handleSubmit}>Enviar resposta</button>
             <hr/>
             <div className="answer-btn-area">
