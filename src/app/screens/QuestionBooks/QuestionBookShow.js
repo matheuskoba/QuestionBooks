@@ -3,12 +3,13 @@ import '../../stylesheets/pages/questionBookShow.sass';
 
 import Header from '../../components/Header';
 
+import { navigate } from '@reach/router';
+
 export const QuestionBookShow = (props) => {
   const [answers, setAnswers] = useState([]);
   const [currentAnswer, setCurrentAnswer] = useState({});
   const [currentIndex, setCurrentIndex] = useState(0);
   const [loading, setLoading] = useState(true);
-  const [submit, setSubmit] = useState(false);
   const [characterCount, setCharacterCount] = useState(0);
   const [time, setTime] = useState(0);
   const [totalTime, setTotalTime] = useState(0);
@@ -57,7 +58,6 @@ export const QuestionBookShow = (props) => {
   };
 
   const handleNext = () => {
-    console.log(currentIndex, answers.length);
     if (currentIndex === answers.length) {
       return;
     }
@@ -84,32 +84,15 @@ export const QuestionBookShow = (props) => {
 
   const handleSubmit = () => {
     setTotalTime(time + totalTime);
-    setSubmit(true);
+    console.log(time);
+    navigate(`/cadernos-de-questoes/${props.id}/obrigado?data=${JSON.stringify(userAnswers)}&time=${(totalTime)}`)
   }
 
   return (
     <div>
       <Header />
-      {console.log(currentIndex, answers.length -1)}
       {loading ? (
         <div>Loading...</div>
-      ) : submit ? (
-        <div id="thanks">
-          <div className='thanks-area'>
-            <h1 className='thanks-title'>Obrigado por enviar!</h1>
-            <div className='time'>O tempo de resposta total é de: {totalTime}</div>
-            <ul>
-              {userAnswers.map((answer, index) => (
-                <li key={index}>
-                  <p className='question-title'>{answer.question}</p>
-                  <p className='resposta-title'>Resposta:</p>
-                  <p className='question-response'>{answer.answer}</p>
-                  <hr/>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
       ) : (
         <div id='answer-details'>
           <div className='answer-area'>
@@ -118,7 +101,9 @@ export const QuestionBookShow = (props) => {
             <p className="answer-body">{currentAnswer.body}</p>
             <textarea className="answer-textarea" placeholder="Responda aqui" value={inputValue} onChange={handleAnswerChange} />
             <p className='answer-caracter-count'>{characterCount} caracteres digitados</p>
-            <button className="answer-btn-send" onClick={handleSubmit}>Enviar resposta</button>
+            {/* <Link to={`/cadernos-de-questoes/${props.id}/obrigado?data=${JSON.stringify(userAnswers)}`}> */}
+              <button className="answer-btn-send" onClick={handleSubmit}>Enviar resposta</button>
+            {/* </Link> */}
             <hr/>
             <div className="answer-btn-area">
               {currentIndex === 0 ?
